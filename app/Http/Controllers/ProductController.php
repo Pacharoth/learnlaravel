@@ -72,4 +72,13 @@ class ProductController extends Controller
         // if true return 1 and false return 0;
         return Product::destroy($id);
     }
+      /**
+     * Search the specified resource from storage.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function search($name){
+        return Product::where('name','like','%'.$name.'%')->get();
+    }
 }
