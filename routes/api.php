@@ -13,6 +13,8 @@ use Illuminate\Support\Facades\Route;
 | is assigned the "api" middleware group. Enjoy building your API!
 |
 */
+//create model php artisan make:model NameModel --migration
+//create Controller php artisan make:controller NameController --api for api
 // php artisan route:list
 Route::resource('products',ProductController::class);
 Route::get('/products/search/{name}',[ProductController::class,'search']);
