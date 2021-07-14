@@ -13,6 +13,9 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
+Route::middleware(['cors'])->group( function () {
+    // return view('welcome');
+    Route::get('/',function(){
+        return view('welcome');
+    });
 });
