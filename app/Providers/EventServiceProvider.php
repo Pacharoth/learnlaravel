@@ -18,6 +18,11 @@ class EventServiceProvider extends ServiceProvider
         Registered::class => [
             SendEmailVerificationNotification::class,
         ],
+        //we can use that we create php artisan event:generate after we put that
+        //It will create folder Listeners and Event and file with those name
+        'App\Event\NewChatMessage'=>[
+            'App\Listeners\SendChatMessageNotification'
+        ]
     ];
 
     /**

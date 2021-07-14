@@ -8,6 +8,11 @@ use Illuminate\Database\Eloquent\Model;
 class ChatMessage extends Model
 {
     use HasFactory;
+    protected $fillable=[
+        'user_id',
+        'chat_room_id',
+        'message'
+    ];
     //create relation ship with chat message
     public function room(){
         //One chat can have One room

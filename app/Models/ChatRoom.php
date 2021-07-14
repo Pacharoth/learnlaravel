@@ -8,6 +8,9 @@ use Illuminate\Database\Eloquent\Model;
 class ChatRoom extends Model
 {
     use HasFactory;
+    protected $fillable=[
+        'name'
+    ];
     //all chat room have relationship with chat message
     public function messages() {
         // chat room has many message
