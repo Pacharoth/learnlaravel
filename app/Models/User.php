@@ -1,12 +1,14 @@
 <?php
 
 namespace App\Models;
+use Illuminate\Support\Str;
 
-use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Support\Facades\Crypt;
 use Laravel\Sanctum\HasApiTokens;
+use Laravel\Sanctum\NewAccessToken;
 
 class User extends Authenticatable
 {
@@ -41,4 +43,15 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+    public function createToken(string $name, array $abilities = ['*'])
+    {
+        $tokenEncr=hash('sha256', $plainTextToken =Crypt::encryptString(Str::random(40)) );
+        $token = $this->tokens()->create([
+            'name' => $name,
+            'token' =>  $tokenEncr,
+            'abilities' => $abilities,
+        ]);
+
+        return new NewAccessToken($token, $token->getKey().'|'.$plainTextToken);
+    }
 }
